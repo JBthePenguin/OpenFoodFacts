@@ -1,3 +1,27 @@
 env/
 
 __pycache__/
+
+class_off/__pycache__/
+
+database/__pycache__/
+
+database/insert_data.pyc
+
+favorite/__pycache__/
+
+favorite/__init__.pyc
+
+favorite/favorite.pyc
+
+substitute/__pycache__/
+
+substitute/__init__.pyc
+
+substitute/substitute.pyc
+
+class_off/__init__.pyc
+
+class_off/category.pyc
+
+class_off/product.pyc
