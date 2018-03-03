@@ -56,22 +56,26 @@ $ source env/bin/activate
 ![insert data screenshot](/screenshots/insert_data.png)
 The [OpenFoodFacts API](https://en.wiki.openfoodfacts.org/API) proposes more than 10000 pages, each of them containing the characteristics of 20 products, that thus takes some time.
 ### NOW, the database is ready !!!
-## *COMING SOON* ---> USE OpenFoodFacts *Python application*
-![I coming soon](/screenshots/coming_soon.png)
-
-*If you do the step 4.2 and use the dump file*, create a virtual environment for Python with virtualenv (*!!!maybe you have to install virtualenv!!!*), use it.
+## USE OpenFoodFacts *Python application*
+*If you use the dump file*, you have to create a virtual environment for Python with virtualenv (*!!!maybe you have to install virtualenv!!!*), use it and install requirements.
 ```sh
 $ cd OpenFoodFacts
 $ virtualenv -p python3 env
 $ source env/bin/activate
+(env)$ pip install -r requirements.txt 
 ```
-### 1. Launch application
+### 1.Launch application.
 ```sh
-$ python .
+(env)$ python .
 ```
-### 2 Choose a category
-### 3. Choose a product and go to buy the substitute that founded by the application, for sure it's a good product for the healthy. 
-### 4. After eating, if you are not sick, you can save the association product/substitute
+### 2. Choice A : Search a substitute or search in yours favorites:
+![welcome and choice A](/screenshots/welcome.png)
+#### 2.1 *COMING SOON* ---> Search a substitute.
+![I coming soon](/screenshots/coming_soon.png)
+##### 2.1.1 Choose a category
+##### 2.1.2 Choose a product and go to buy the substitute that founded by the application, for sure it's a good product for the healthy.
+##### 2.1.3 After eating, if you are not sick, you can save the association product/substitute
+#### 2.2 Search in yours favorites. 
 \* The default language setting is french, if you want to change with an [other available language](https://en.wiki.openfoodfacts.org/API#Languages), it's necessary, at step 4.2, modify in **insert_data.py** : 
 
 * *line 29*
