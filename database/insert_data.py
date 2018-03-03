@@ -3,7 +3,7 @@
 
 """ import all necessary modules
     connect to database
-    make request to pick information
+    make request to pick information to OpenfoodFacts API
     and put only necessary informations in database"""
 
 # pylint: disable=no-name-in-module

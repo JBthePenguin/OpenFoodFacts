@@ -35,6 +35,7 @@ def main():
         choice_a = ""
         while choice_a == "":
             choice_a = input("Taper 1 ou 2 (puis entrée): ")
+            print("\n")
         if choice_a in ["1", "2"]:
             input_error = False
             if choice_a == "1":
@@ -42,7 +43,7 @@ def main():
             else:
                 favorite.found()
         else:
-            print("\n  !! mauvaise saisie !!\n")
+            print("  !! mauvaise saisie !!\n")
 
 
 if __name__ == "__main__":
