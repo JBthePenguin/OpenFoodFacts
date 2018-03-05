@@ -83,11 +83,12 @@ Select the category that you want to search with the number.
 Here you can choose to go in a down category, or come back to the main category, OR ...
 ##### 2.1.2 Choose a product
 ![list product](/screenshots/product_2.png)
-### COMING SOON
-Select the product that you want to find a substitute. The application found one or more and display all information on it.
-![end](/screenshots/end.png)
-![coming soon](/screenshots/coming_soon.png)
 
+Select the product that you want to find a substitute. The application display all information on it...
+![product infos](/screenshots/product_info.png)
+### COMING SOON
+![coming soon](/screenshots/coming_soon.png)
+... and found one (or more) subsitute.
 Go to buy it, for sure it's a good product for the healthy.
 ##### 2.1.3 After eating, if you are not sick, you can save the association product/substitute
 

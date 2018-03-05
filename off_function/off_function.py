@@ -39,8 +39,14 @@ def display_error_msg():
 
 
 def display_categories_list(title, categories, cursor, query_category_product):
-    """ display the name of category with
-    his number of products and id for user input -> 1 2 3 ..."""
+    """ with:
+    - categories -> list(Category)
+    - cursor -> CURSOR mysql-connector
+    - query_category_product -> query model
+    display a list of category with:
+    - id for user input -> 1 2 3 ...
+    - name
+    - number of products"""
     print(("#########################"), (
            "\n " + title), (
            "\n#########################")
@@ -54,6 +60,14 @@ def display_categories_list(title, categories, cursor, query_category_product):
 
 
 def display_products_list(products, cursor, query_product):
+    """ with:
+    - products : list of product_id
+    - cursor -> CURSOR mysql-connector
+    - query_category_product -> query model
+        display list of products with:
+    - id for user input -> 1 2 3 ...
+    - name
+    - brand"""
     print(("#########################"), (
            "\n PRODUITS"), (
            "\n#########################\n")
@@ -64,6 +78,33 @@ def display_products_list(products, cursor, query_product):
         for (name, brands) in cursor:
             print(str(i) + ". " + name + "    Marque: " + brands)
             i += 1
+
+
+def display_product(product):
+    """ with:
+    - product : Product()
+        display all information:
+    - name      brand-
+    - nutrition grade
+    - description
+    - store
+    - url_link
+    """
+    print(("\n##########################################################"), (
+           "\n    " + product.name + "    Marque: " + product.brands), (
+           "\n##########################################################"), (
+           "\n              Nutri-Score: " + product.nutrition_grade.capitalize()), (
+           "\n\n    A -> Mmmm !!! :)  ...  E -> Brrr !!! :("), (
+           "\n##########################################################"), (
+           "\n\n " + product.description + "\n"),(
+           "\n##########################################################"), (
+           "\n  lien OpenFoodFacts: " + product.url_link),(
+           "\n##########################################################\n"), (
+           "\n  où m'acheter?: " + product.stores),(
+           "\n##########################################################")
+
+    )
+
 
 
 # INPUT

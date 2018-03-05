@@ -115,10 +115,7 @@ def main():
                         selected_product = product.Product(
                             selected_product_id, name, brands,
                             nutrition_grade, url_link, description, stores)
-                    print("nom du produit : " +
-                          selected_product.name +
-                          "   link: " + selected_product.url_link +
-                          "\n all description of the product and a substitute\nCOMING SOON")
+                    off_function.display_product(selected_product)
                     product_founded = True
                     return_main_categories = True
                 elif user_choice == 2:
