@@ -2,26 +2,20 @@ env/
 
 __pycache__/
 
-class_off/__pycache__/
-
 database/__pycache__/
 
 database/insert_data.pyc
 
-favorite/__pycache__/
+off_class/__pycache__/
 
-favorite/__init__.pyc
+off_class/__init__.pyc
 
-favorite/favorite.pyc
+off_class/category.pyc
 
-substitute/__pycache__/
+off_class/product.pyc
 
-substitute/__init__.pyc
+off_function/__pycache__/
 
-substitute/substitute.pyc
+off_function/__init__.pyc
 
-class_off/__init__.pyc
-
-class_off/category.pyc
-
-class_off/product.pyc
+off_function/off_function.pyc

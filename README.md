@@ -57,7 +57,7 @@ $ source env/bin/activate
 The [OpenFoodFacts API](https://en.wiki.openfoodfacts.org/API) proposes more than 10000 pages, each of them containing the characteristics of 20 products, that thus takes some time.
 ### NOW, the database is ready !!!
 ## USE OpenFoodFacts *Python application*
-*If you use the dump file*, you have to create a virtual environment for Python with virtualenv (*!!!maybe you have to install virtualenv!!!*), use it and install requirements.
+*If you used the dump file*, you have to create a virtual environment for Python with virtualenv (*!!!maybe you have to install virtualenv!!!*), use it and install requirements.
 ```sh
 $ cd OpenFoodFacts
 $ virtualenv -p python3 env
@@ -70,12 +70,29 @@ $ source env/bin/activate
 ```
 ### 2. Choice A : Search a substitute or search in yours favorites:
 ![welcome and choice A](/screenshots/welcome.png)
-#### 2.1 *COMING SOON* ---> Search a substitute.
-![I coming soon](/screenshots/coming_soon.png)
-##### 2.1.1 Choose a category
-##### 2.1.2 Choose a product and go to buy the substitute that founded by the application, for sure it's a good product for the healthy.
+#### 2.1 Search a substitute.
+##### 2.1.1 Choose one of the main category in the list
+![list main categoiries](/screenshots/main_categories_1.png)
+#### ...
+![list main categoiries](/screenshots/main_categories_2.png)
+
+Select the category that you want to search with the number.
+![list down categoiries](/screenshots/down_cat_prod.png)
+#### ...
+![list product](/screenshots/product_1.png)
+Here you can choose to go in a down category, or come back to the main category, OR ...
+##### 2.1.2 Choose a product
+![list product](/screenshots/product_2.png)
+### COMING SOON
+Select the product that you want to find a substitute. The application found one or more and display all information on it.
+![end](/screenshots/end.png)
+![coming soon](/screenshots/coming_soon.png)
+
+Go to buy it, for sure it's a good product for the healthy.
 ##### 2.1.3 After eating, if you are not sick, you can save the association product/substitute
+
 #### 2.2 Search in yours favorites. 
+
 \* The default language setting is french, if you want to change with an [other available language](https://en.wiki.openfoodfacts.org/API#Languages), it's necessary, at step 4.2, modify in **insert_data.py** : 
 
 * *line 29*

@@ -16,7 +16,7 @@ class Category():
         self.name = name
 
 
-    def found_products(self, cursor, query_category_product):
+    def found_products_id(self, cursor, query_category_product):
         """ Method to found products in self
         return a list of product_id """
         products = []
@@ -27,6 +27,12 @@ class Category():
         return products
 
 
+    def found_nbre_products(self, cursor, query_category_product):
+        """ Method found the number of product in self 
+        before return it"""
+        return len(self.found_products_id(cursor, query_category_product))
+
+    
     def found_down_categories(
         self, products, cursor, query_category, query_category_product):
         """ Method to found down_categories in self
@@ -41,5 +47,6 @@ class Category():
         down_categories = []
         for (cat_id, cat_level, cat_name) in cursor:
             if cat_id in all_categories_id:
-                down_categories.append(cat_id)
+                selected_category = Category(cat_id, cat_level, cat_name)
+                down_categories.append(selected_category)
         return down_categories

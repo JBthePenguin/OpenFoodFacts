@@ -1,1 +1,0 @@
-MAIN_DIR = path_dirname(__file__)
