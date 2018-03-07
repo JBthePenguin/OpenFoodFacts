@@ -1,7 +1,7 @@
 # OpenFoodFacts  *Python application*\*
-**This application gets back the data proposed by the [OpenFoodFacts API](https://en.wiki.openfoodfacts.org/API) to build a database on your localhost and to use it later when you want to find a better product for your health than the one that you planned to eat (or to drink).
+**This application gets back the data proposed by the [OpenFoodFacts API](https://en.wiki.openfoodfacts.org/API) to build a database on your localhost and to use it later when you want to find a better product for your health than the one that you planned to eat (or drink).
 So, to stay healthy, *download the directory OpenFoodFacts* and ...**
-## CREATE DATABASE *only before the first using*: 
+## CREATE DATABASE *only before the first using*:
 To create the following database, [MySQL](https://dev.mysql.com/doc/refman/5.7/en/installing.html) or [MariaDB](https://mariadb.com/kb/en/library/getting-installing-and-upgrading-mariadb/) must be installed on your host.
 ![DB structure](/screenshots/db_structure.png)
 
@@ -24,6 +24,7 @@ exit;
 ### 4. *Create the tables and Insert data from [OpenFoodFacts API](https://en.wiki.openfoodfacts.org/API)*
 At this point, you have two possibilities:
 #### 4.1. *the faster one: using the dump file*
+\**new db is coming, [a dump with data for Category](https://drive.google.com/open?id=1e9osRfSo7x2igyE0Ttd_69qV3lOB_zyD)*
 ##### Download the dump file *[here ( 32.1 MB )](https://drive.google.com/open?id=1Va_58Wm6qBpvdTZ6_DD9U4pjeHYhOB2A)*.
 ##### Create the tables with data.
 Inside the same directory of the dump file:
@@ -34,6 +35,7 @@ Enter password: BonAppetit
 The installed database was created on *March 1st 2018* and contains 71237 products listed in 8983 categories and under categories.
 If you want an updated database, you have to choice
 #### 4.2. *the longer one : using the Python script*
+\* a new script to insert data only in Category -> [insert_category_data.py](/database/insert_category_data.py)
 ##### Create the tables.
 ```sh
 $ cd OpenFoodFacts
@@ -80,7 +82,7 @@ Select the category that you want to search with the number.
 ![list down categoiries](/screenshots/down_cat_prod.png)
 #### ...
 ![list product](/screenshots/product_1.png)
-Here you can choose to go in a down category, or come back to the main category, OR ...
+Here you can choose to go in a down category, or come back to the main menu, OR ...
 ##### 2.1.2 Choose a product
 ![list product](/screenshots/product_2.png)
 
