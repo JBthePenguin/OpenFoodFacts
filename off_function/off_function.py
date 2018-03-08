@@ -26,6 +26,7 @@ def display_choice_a():
         "##############################################\n",
         "   1. Sélectionner un produit à substituer\n",
         "   2. Mes Favoris\n",
+        "   Q. Quitter\n"
         "##############################################",
         "\n"
     ]))
@@ -55,6 +56,10 @@ def display_choice_b(down_categories):
     print(msg)
 
 
+def display_waiting_msg():
+    pass
+
+
 def display_error_msg():
     """ display the error message
     when the input user is wrong """
@@ -66,7 +71,7 @@ def display_end_msg():
     print("\n  !!! A bientôt et BON APPETIT !!!\n")
 
 
-def display_category(main_category, down_categories):
+def display_category(category, down_categories):
     """ with:
     - main category -> Category()
     - down categories -> list(Category())
@@ -77,8 +82,8 @@ def display_category(main_category, down_categories):
     print("".join([
         "\n",
         "########################################\n",
-        "  ", main_category.name, "\n"
-        "  ", str(len(main_category.products_id)), " produits", "\n",
+        "  ", category.name, "\n"
+        "  ", str(len(category.products_id)), " produits", "\n",
         "########################################"
         "\n"
     ]))
@@ -92,7 +97,7 @@ def display_category(main_category, down_categories):
         i += 1
 
 
-def display_products_list(category):
+def display_products_list(category, products_id_avalaible):
     """ with:
     - products : list of products_brands
         display list of products with:
@@ -106,10 +111,12 @@ def display_products_list(category):
     ]))
     i = 1
     for key in category.products_brands:
-        print("".join([
-            str(i), ". ", category.products_brands[key],
-        ]))
-        i += 1
+        for product_id in products_id_avalaible:
+            if key == product_id:
+                print("".join([
+                    str(i), ". ", category.products_brands[key],
+                ]))
+                i += 1
 
 
 def display_product(product):

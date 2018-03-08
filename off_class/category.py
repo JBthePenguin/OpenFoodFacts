@@ -104,3 +104,21 @@ class Category():
             for down_category in down_categories:
                 down_category.found_products_id()
         return down_categories
+
+    def update_products_id(self, products_id_available):
+        """ update down categories's list of products'id
+        with id available"""
+        new_products_id = []
+        for product_id in self.products_id:
+            for product_id_available in products_id_available:
+                if product_id == product_id_available:
+                    new_products_id.append(product_id)
+        self.products_id = new_products_id
+        # update products brands
+        self.product_brand = {}
+        for product_id in self.products_id:
+            CURSOR.execute(QUERY_PRODUCT, (product_id,))
+            for (name, brands) in CURSOR:
+                product_brand = "".join([name, "        marque: ", brands])
+                self.products_brands[product_id] = product_brand
+

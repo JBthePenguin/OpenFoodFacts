@@ -14,14 +14,14 @@ def main():
     - choice A : select a product or a favorite
     - choice B : select category
     -  user select a product -> display description and found substitute"""
-    # Welcome message
-    off_function.display_welcome_msg()
     appli_on = True
     while appli_on is True:
+        # Welcome message
+        off_function.display_welcome_msg()
         # Choice A
         off_function.display_choice_a()
         user_choice = off_function.save_input_user(
-            "Taper 1 ou 2 puis entrée (Q pour quitter): ", 2
+            "Taper 1 ou 2 puis entrée: ", 2
         )
         if user_choice == "q":
             appli_on = False
@@ -43,11 +43,14 @@ def main():
                     len(down_categories)
                 )
                 new_main_category = down_categories[user_choice - 1]
+                products_id_available = new_main_category.products_id
                 # Display the selected category and down categories
                 new_down_categories = new_main_category.found_down_categories()
+                for new_down_category in new_down_categories:
+                    new_down_category.update_products_id(products_id_available)
                 off_function.display_category(new_main_category, new_down_categories)
                 # Display a list of products
-                off_function.display_products_list(new_main_category)
+                off_function.display_products_list(new_main_category, products_id_available)
                 # Choice B
                 if new_down_categories != []:
                     off_function.display_choice_b(True)
@@ -61,7 +64,7 @@ def main():
                     )
                 if user_choice == 1:
                     # user select a product
-                    off_function.display_products_list(new_main_category)
+                    off_function.display_products_list(new_main_category, products_id_available)
                     user_choice = off_function.save_input_user(
                         "\nChoisir un produit en saisissant son numéro: ",
                         len(new_main_category.products_id)
@@ -81,6 +84,7 @@ def main():
                     return_main_menu = True
                 elif user_choice == 3:
                     # user want to select a down categorie
+                    main_category = new_main_category
                     down_categories = new_down_categories
                 else:
                     # user quit
