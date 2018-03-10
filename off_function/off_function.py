@@ -13,7 +13,7 @@ def display_welcome_msg():
         "## !!! OPENFOODFACTS Python application !!! ##\n",
         "##    est là pour vous aider à trouver un   ##\n",
         "## produit plus sain  à déguster à la place ##\n",
-        "##  de celui que vous apprêtiez à dévorer.  ##\n",
+        "##    de celui que vous voulez dévorer.     ##\n",
         "##############################################",
         "\n"
     ]))
@@ -26,30 +26,30 @@ def display_choice_a():
         "##############################################\n",
         "   1. Sélectionner un produit à substituer\n",
         "   2. Mes Favoris\n",
-        "   Q. Quitter\n"
+        "   Q. Quitter\n",
         "##############################################",
         "\n"
     ]))
 
 
-def display_choice_b(down_categories):
+def display_choice_b(category_name, with_down_categories, with_prods_id_no_cat):
     """ display the choice B with 2 or 3 options
     depends if there down categories or not"""
+    i = 1
     msg = "".join([
-        "\n"
-        "##############################################\n",
-        "   1. Choisir un produit\n",
-        "   2. Retourner au menu principal",
-        "\n"
+        "\n",
+        "##############################################\n"
     ])
-    if down_categories is True:
-        msg = "".join([
-            msg,
-            "   3. Choisir une sous catégorie",
-            "\n"
-        ])
+    if with_down_categories is True:
+        msg = "".join([msg, "   ", str(i), ". Choisir une sous-categorie\n"])
+        i += 1
+    if with_prods_id_no_cat is True:
+        msg = "".join([msg, "   ", str(i), ". Choisir un produit sans sous-catégorie\n"])
+        i += 1
     msg = "".join([
         msg,
+        "   ", str(i), ". Choisir dans tous les produits de la catégorie ", category_name, "\n"
+        "   ", str(i + 1), ". Retourner au menu principal\n"
         "##############################################",
         "\n"
     ])
@@ -84,39 +84,37 @@ def display_category(category, down_categories):
         "########################################\n",
         "  ", category.name, "\n"
         "  ", str(len(category.products_id)), " produits", "\n",
-        "########################################"
+        "########################################",
         "\n"
     ]))
     i = 1
     for down_category in down_categories:
         print("".join([
             "\n",
-            str(i), ". ", down_category.name, ": ",
-            str(len(down_category.products_id)), " produits"
+            str(i), ". ", down_category[1], ": ",
+            str(down_category[2]), " produits"
         ]))
         i += 1
 
 
-def display_products_list(category, products_id_avalaible):
+def display_products_list(title, products_id):
     """ with:
     - products : list of products_brands
         display list of products with:
     - id for user input -> 1 2 3 ... - name - brand"""
     print("".join([
-        "\n"
-        "#########################\n",
-        "       PRODUITS\n",
-        "#########################",
+        "\n",
+        "##############################################\n",
+        "".join(["  ", title, "\n"]),
+        "##############################################",
         "\n"
     ]))
     i = 1
-    for key in category.products_brands:
-        for product_id in products_id_avalaible:
-            if key == product_id:
-                print("".join([
-                    str(i), ". ", category.products_brands[key],
-                ]))
-                i += 1
+    for product_id in products_id:
+        print("".join([
+            str(i), ". id: ", str(product_id)
+        ]))
+        i += 1
 
 
 def display_product(product):
@@ -132,10 +130,10 @@ def display_product(product):
     print("".join([
         "\n",
         "###################################################################\n",
-        "    ", product.name, "    Marque: ", product.brands, "\n"
+        "    ", product.name, "    Marque: ", product.brands, "\n",
         "###################################################################\n",
-        "              Nutri-Score: ", product.nutrition_grade.capitalize(), "\n\n", 
-        "  A -> Mmmm !!! :)      ...         E -> Brrr !!! :(", "\n" 
+        "              Nutri-Score: ", product.nutrition_grade.capitalize(), "\n\n",
+        "  A -> Mmmm !!! :)      ...         E -> Brrr !!! :(", "\n",
         "###################################################################\n",
         " ", product.description, "\n\n",
         "###################################################################\n",
@@ -148,7 +146,7 @@ def display_product(product):
 
 
 # INPUT
-def save_input_user(input_msg, nbre_choice):
+def save_input_user(input_msg, nbre_choice, with_quit):
     """ valid the input user before return it"""
     valid_input = False
     while valid_input is False:
@@ -160,10 +158,10 @@ def save_input_user(input_msg, nbre_choice):
         except ValueError:
             try:
                 choice = choice.lower()
-            except ValueError:  
+            except ValueError:
                 display_error_msg()
             else:
-                if choice == "q":
+                if (with_quit is True) and (choice == "q"):
                     return choice
                 else:
                     display_error_msg()

@@ -13,7 +13,8 @@ import mysql.connector
 ## Connexion
 # to DataBase
 CNX = mysql.connector.connect(
-    user="OpenFoodFactsApp", password='BonAppetit', host="127.0.0.1", database="db_openfoodfacts")
+    user="OpenFoodFactsApp", password='BonAppetit', host="127.0.0.1", database="db_openfoodfacts"
+)
 CURSOR = CNX.cursor()
 ## Query Models
 # to SELECT Product.* with id
@@ -36,12 +37,12 @@ class Product():
         self.id_prod = id_prod
         CURSOR.execute(QUERY_PRODUCT, (id_prod,))
         for (
-            name,
-            brands,
-            nutrition_grade,
-            url_link,
-            description,
-            stores
+                name,
+                brands,
+                nutrition_grade,
+                url_link,
+                description,
+                stores
         ) in CURSOR:
             self.name = name
             self.brands = brands
