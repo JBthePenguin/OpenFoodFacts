@@ -55,8 +55,12 @@ def main():
                 # Display a list of products
                 with_prods_id_no_cat = False
                 if prods_id_no_cat != []:
+                    products_no_cat = []
+                    for prod_id_no_cat in prods_id_no_cat:
+                        product_no_cat = product.Product(prod_id_no_cat)
+                        products_no_cat.append(product_no_cat)
                     off_function.display_products_list(
-                        "PRODUITS SANS SOUS-CATEGORIE", prods_id_no_cat
+                        "PRODUITS SANS SOUS-CATEGORIE", products_no_cat
                     )
                     with_prods_id_no_cat = True
                 # Choice B
@@ -89,8 +93,12 @@ def main():
                     if nbre_choice == 4:
                         # user choose to select a product
                         choose_product = True
+                        new_products = []
+                        for new_product_id in new_main_category.products_id:
+                            new_product = product.Product(new_product_id)
+                            new_products.append(new_product)
                         off_function.display_products_list(
-                            "".join(["PRODUITS DE LA CATEGORIE ", new_main_category.name]),
+                            "".join(["PRODUITS DE LA CATEGORIE ", new_products]),
                             new_main_category.products_id
                         )
                         list_products_id = new_main_category.products_id
@@ -101,15 +109,19 @@ def main():
                         return_main_menu = True
                     elif nbre_choice == 3:
                         choose_product = True
+                        new_products = []
+                        for new_product_id in new_main_category.products_id:
+                            new_product = product.Product(new_product_id)
+                            new_products.append(new_product)
                         off_function.display_products_list(
-                            "".join(["PRODUITS DE LA CATEGORIE ", new_main_category.name]),
+                            "".join(["PRODUITS DE LA CATEGORIE ", new_products]),
                             new_main_category.products_id
                         )
                         list_products_id = new_main_category.products_id
                     else:
                         choose_product = True
                         off_function.display_products_list(
-                                "PRODUITS SANS SOUS-CATEGORIE", prods_id_no_cat
+                                "PRODUITS SANS SOUS-CATEGORIE", products_no_cat
                         )
                         list_products_id = prods_id_no_cat
                 else:
@@ -119,13 +131,17 @@ def main():
                     elif with_prods_id_no_cat is True:
                         choose_product = True
                         off_function.display_products_list(
-                                "PRODUITS SANS SOUS-CATEGORIE", prods_id_no_cat
+                                "PRODUITS SANS SOUS-CATEGORIE", products_no_cat
                         )
                         list_products_id = prods_id_no_cat
                     else:
                         choose_product = True
+                        new_products = []
+                        for new_product_id in new_main_category.products_id:
+                            new_product = product.Product(new_product_id)
+                            new_products.append(new_product)
                         off_function.display_products_list(
-                            "".join(["PRODUITS DE LA CATEGORIE ", new_main_category.name]),
+                            "".join(["PRODUITS DE LA CATEGORIE ", new_products]),
                             new_main_category.products_id
                         )
                         list_products_id = new_main_category.products_id

@@ -97,7 +97,7 @@ def display_category(category, down_categories):
         i += 1
 
 
-def display_products_list(title, products_id):
+def display_products_list(title, products):
     """ with:
     - products : list of products_brands
         display list of products with:
@@ -110,9 +110,9 @@ def display_products_list(title, products_id):
         "\n"
     ]))
     i = 1
-    for product_id in products_id:
+    for product in products:
         print("".join([
-            str(i), ". id: ", str(product_id)
+            str(i), ". ", product.name, "   Marque: ", product.brands
         ]))
         i += 1
 
