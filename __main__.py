@@ -194,7 +194,17 @@ def main():
                             print(new_favorite.save_in_db())
                             return_main_menu = True
         else:
-            print("Favori non disponible")
+            # Favorites
+            favorites_id = favorite.found_favorites()
+            if favorites_id == []:
+                print("Aucun Favori n'est enregistré")
+            else:
+                favorites = []
+                for favorite_id in favorites_id:
+                    fav_prod = product.Product(favorite_id[0])
+                    fav_sub = product.Product(favorite_id[1])
+                    favorites.append((fav_prod, fav_sub))
+                off_function.display_favorites_list(favorites)
     off_function.display_end_msg()
 
 

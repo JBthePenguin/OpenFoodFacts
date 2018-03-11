@@ -152,6 +152,41 @@ def display_product(product):
         "\n"
     ]))
 
+def display_favorites_list(favorites):
+    """ with favorites : list of favorite -> (prod_id, sub_id) """
+    fav_list = "".join([
+        
+    ])
+    i = 0
+    for favorite in favorites:
+        i += 1
+        fav_list = "".join([
+            fav_list,
+            "\n",
+            "###################################################################\n",
+            "                     Favorite ", str(i), "\n",
+            "              ########################\n\n"
+            " Product : ", favorite[0].name, "   Marque: ", favorite[0].brands, "\n",
+            "##############\n",
+            "          Nutri-Score: ", favorite[0].nutrition_grade.capitalize(), "\n\n",
+            "  A -> Mmmm !!! :)      ...         E -> Brrr !!! :(", "\n",
+            "#########################\n",
+            "  lien OpenFoodFacts: ", favorite[0].url_link, "\n",
+            "#########################\n",
+            "  où m'acheter?: " + favorite[0].stores, "\n",
+            "############################################\n\n"
+            " Substitut : ", favorite[1].name, "   Marque: ", favorite[1].brands, "\n",
+            "##############\n",
+            "          Nutri-Score: ", favorite[1].nutrition_grade.capitalize(), "\n\n",
+            "  A -> Mmmm !!! :)      ...         E -> Brrr !!! :(", "\n",
+            "#########################\n",
+            "  lien OpenFoodFacts: ", favorite[1].url_link, "\n",
+            "#########################\n",
+            "  où m'acheter?: " + favorite[1].stores, "\n",
+            "###################################################################\n"
+        ])
+    print(fav_list)
+
 
 # INPUT
 def save_input_user(input_msg, nbre_choice, with_quit):

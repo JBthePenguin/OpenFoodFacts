@@ -21,6 +21,8 @@ CURSOR = CNX.cursor()
 ADD_FAVORITE = ("INSERT INTO Favorite "
                         "(product_id, substitute_id) "
                         "VALUES (%s, %s)")
+# to SELECT * in Favorite ->
+QUERY_ALL_FAVORITE = ("SELECT product_id, substitute_id FROM Favorite ")
 
 
 class Favorite():
@@ -45,3 +47,12 @@ class Favorite():
 			msg = "Enregistrement du Favori effectué"
 		return msg
 
+
+def found_favorites():
+    """ function called to found favorites saved in db
+    and return a list of favorites : [(product_id, substitute_id)]"""
+    favorites = []
+    CURSOR.execute(QUERY_ALL_FAVORITE, ())
+    for (product_id, substitute_id) in CURSOR:
+        favorites.append((product_id, substitute_id))
+    return favorites
