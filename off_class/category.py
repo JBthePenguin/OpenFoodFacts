@@ -13,27 +13,27 @@ import mysql.connector
 ## Connexion
 # to DataBase
 CNX = mysql.connector.connect(
-    user="OpenFoodFactsApp", password='BonAppetit', host="127.0.0.1", database="db_openfoodfacts"
+    user="OpenFoodFactsApp", password='BonAppetit', host="127.0.0.1", database="db_off_test"
 )
 CURSOR = CNX.cursor()
 ## Query Models
-# to SELECT all products id, name, brands in Product -> main category
+# to SELECT all id in Product -> main category
 QUERY_ALL_PRODUCT = ("SELECT id FROM Product ")
 # to SELECT count(CategoryProduct.product_id) with category_id
 QUERY_PRODUCT_CATEGORY_COUNT = ("SELECT count(product_id) FROM CategoryProduct "
-                            "WHERE category_id = %s")
+                                "WHERE category_id = %s")
 # to SELECT CategoryProduct.product_id with category_id
 QUERY_PRODUCT_CATEGORY = ("SELECT product_id FROM CategoryProduct "
-                            "WHERE category_id = %s")
+                          "WHERE category_id = %s")
 # to SELECT CategoryProduct.category_id with product_id
 QUERY_CATEGORY_PRODUCT = ("SELECT category_id FROM CategoryProduct "
-                            "WHERE product_id = %s")
-# to SELECT Category.id with level
+                          "WHERE product_id = %s")
+# to SELECT Category.id and Category.name with level
 QUERY_CATEGORY_ID = ("SELECT id, name FROM Category "
-                  "WHERE level = %s")
+                     "WHERE level = %s")
 # to SELECT Category.name with id and level
 QUERY_CATEGORY_NAME = ("SELECT name FROM Category "
-                  "WHERE id = %s AND level = %s")
+                       "WHERE id = %s AND level = %s")
 
 
 class Category():
@@ -71,16 +71,17 @@ class Category():
         down_categories = []
         down_categories_id_name = []
         if self.cat_id == "M":
-            # Application: down categories -> all categories level 1
+            # Application: down categories -> all categories level 1 with more than 500 products
             CURSOR.execute(QUERY_CATEGORY_ID, (1,))
             for (cat_id, cat_name) in CURSOR:
                 down_categories_id_name.append((cat_id, cat_name))
-            for down_category_id_name in down_categories_id_name:
-                CURSOR.execute(QUERY_PRODUCT_CATEGORY_COUNT, (down_category_id_name[0],))
+            for down_cat_id_name in down_categories_id_name:
+                CURSOR.execute(QUERY_PRODUCT_CATEGORY_COUNT, (down_cat_id_name[0],))
                 for nbre_products_id in CURSOR:
-                    down_categories.append(
-                        (down_category_id_name[0], down_category_id_name[1], nbre_products_id[0])
-                    )
+                    if nbre_products_id[0] > 500:
+                        down_categories.append(
+                            (down_cat_id_name[0], down_cat_id_name[1], nbre_products_id[0])
+                        )
             return down_categories
         # main category after 1st choice
         # and for all other down categories for after
@@ -100,15 +101,15 @@ class Category():
                     down_categories_id_name.append((down_category_id, cat_name[0]))
         # nbre of products calculate with products available
         products_id_added = []
-        for down_category_id_name in down_categories_id_name:
+        for down_cat_id_name in down_categories_id_name:
             nbre_products = 0
-            CURSOR.execute(QUERY_PRODUCT_CATEGORY, (down_category_id_name[0],))
+            CURSOR.execute(QUERY_PRODUCT_CATEGORY, (down_cat_id_name[0],))
             for product_id in CURSOR:
                 if product_id[0] in self.products_id:
                     nbre_products += 1
                     if product_id[0] not in products_id_added:
                         products_id_added.append(product_id[0])
-            down_category = (down_category_id_name[0], down_category_id_name[1], nbre_products)
+            down_category = (down_cat_id_name[0], down_cat_id_name[1], nbre_products)
             down_categories.append(down_category)
         products_id_no_category = []
         for product_id in self.products_id:

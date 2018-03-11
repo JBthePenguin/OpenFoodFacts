@@ -98,8 +98,8 @@ def main():
                             new_product = product.Product(new_product_id)
                             new_products.append(new_product)
                         off_function.display_products_list(
-                            "".join(["PRODUITS DE LA CATEGORIE ", new_products]),
-                            new_main_category.products_id
+                            "".join(["PRODUITS DE LA CATEGORIE ", new_main_category.name]),
+                            new_products
                         )
                         list_products_id = new_main_category.products_id
                     else:
@@ -114,8 +114,8 @@ def main():
                             new_product = product.Product(new_product_id)
                             new_products.append(new_product)
                         off_function.display_products_list(
-                            "".join(["PRODUITS DE LA CATEGORIE ", new_products]),
-                            new_main_category.products_id
+                            "".join(["PRODUITS DE LA CATEGORIE ", new_main_category.name]),
+                            new_products
                         )
                         list_products_id = new_main_category.products_id
                     else:
@@ -141,8 +141,8 @@ def main():
                             new_product = product.Product(new_product_id)
                             new_products.append(new_product)
                         off_function.display_products_list(
-                            "".join(["PRODUITS DE LA CATEGORIE ", new_products]),
-                            new_main_category.products_id
+                            "".join(["PRODUITS DE LA CATEGORIE ", new_main_category.name]),
+                            new_products
                         )
                         list_products_id = new_main_category.products_id
                 if choose_product is True:
@@ -155,11 +155,29 @@ def main():
                     selected_product_id = list_products_id[user_choice - 1]
                     selected_product = product.Product(selected_product_id)
                     off_function.display_product(selected_product)
-                    print("".join([
-                        "##################################\n",
-                        " found substitute comming soon\n",
-                        "##################################\n"
-                    ]))
+                    substitutes_id = selected_product.found_substitutes()
+                    # limit the number of subsitute at 10
+                    substitutes_id = substitutes_id[:10]
+                    substitutes = []
+                    for substitute_id in substitutes_id:
+                        substitute = product.Product(substitute_id)
+                        substitutes.append(substitute)
+                    if substitutes == []:
+                        title = "Désolé, aucun substitut nutri-score A trouvé  :("
+                    else:
+                        title = "SUBSTITUT(S)   NUTRI-SCORE : A   :)"
+                    off_function.display_products_list(
+                        title,
+                        substitutes
+                    )
+                    if substitutes != []:
+                        user_choice = off_function.save_input_user(
+                            "\nChoisi un substitut en saisissant son numéro: ",
+                            len(substitutes),
+                            False
+                        )
+                        selected_substitute = substitutes[user_choice - 1]
+                        off_function.display_product(selected_substitute)
                     return_main_menu = True
                     appli_on = False
         else:
