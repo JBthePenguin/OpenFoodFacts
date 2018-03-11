@@ -9,12 +9,12 @@ def display_welcome_msg():
     """ display the welcome message"""
     print("".join([
         "\n",
-        "##############################################\n",
-        "## !!! OPENFOODFACTS Python application !!! ##\n",
-        "##    est là pour vous aider à trouver un   ##\n",
-        "## produit plus sain  à déguster à la place ##\n",
-        "##    de celui que vous voulez dévorer.     ##\n",
-        "##############################################",
+        "               ##############################################\n",
+        "               ## !!! OPENFOODFACTS Python application !!! ##\n",
+        "               ##    est là pour vous aider à trouver un   ##\n",
+        "               ## produit plus sain  à déguster à la place ##\n",
+        "               ##    de celui que vous voulez dévorer.     ##\n",
+        "               ##############################################",
         "\n"
     ]))
 
@@ -89,10 +89,10 @@ def display_category(category, down_categories):
     and the corresponding input number -> i"""
     print("".join([
         "\n",
-        "########################################\n",
-        "  ", category.name, "\n"
-        "  ", str(len(category.products_id)), " produits", "\n",
-        "########################################",
+        "               ########################################\n",
+        "                     ", category.name, "\n"
+        "                     ", str(len(category.products_id)), " produits", "\n",
+        "               ########################################",
         "\n"
     ]))
     i = 1
