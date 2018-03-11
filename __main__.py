@@ -4,7 +4,7 @@
 """ imports all necessary modules and play application : main() """
 
 # import from local modules
-from off_class import category, product
+from off_class import category, product, favorite
 from off_function import off_function
 
 
@@ -178,8 +178,21 @@ def main():
                         )
                         selected_substitute = substitutes[user_choice - 1]
                         off_function.display_product(selected_substitute)
-                    return_main_menu = True
-                    appli_on = False
+                        off_function.display_choice_c()
+                        user_choice = off_function.save_input_user(
+                            "Taper 1 ou 2 puis entrée: ", 2, True
+                        )
+                        if user_choice == "q":
+                            appli_on = False
+                            return_main_menu = True
+                        elif user_choice == 2:
+                            return_main_menu = True
+                        else:
+                            new_favorite = favorite.Favorite(
+                                selected_product.id_prod, selected_substitute.id_prod
+                            )
+                            print(new_favorite.save_in_db())
+                            return_main_menu = True
         else:
             print("Favori non disponible")
     off_function.display_end_msg()

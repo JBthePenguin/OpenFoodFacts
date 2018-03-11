@@ -1,3 +1,5 @@
 requests
 
 mysql-connector-python-rf
+
+tqdm

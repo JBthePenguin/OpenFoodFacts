@@ -13,7 +13,7 @@ import mysql.connector
 ## Connexion
 # to DataBase
 CNX = mysql.connector.connect(
-    user="OpenFoodFactsApp", password='BonAppetit', host="127.0.0.1", database="db_off_test"
+    user="OpenFoodFactsApp", password='BonAppetit', host="127.0.0.1", database="db_openfoodfacts"
 )
 CURSOR = CNX.cursor()
 ## Query Models

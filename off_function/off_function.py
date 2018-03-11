@@ -55,9 +55,17 @@ def display_choice_b(category_name, with_down_categories, with_prods_id_no_cat):
     ])
     print(msg)
 
-
-def display_waiting_msg():
-    pass
+def display_choice_c():
+    """ display the choice save or not in favorites -> C """
+    print("".join([
+        "\n",
+        "##############################################\n",
+        "   1. Ajouter aux Favoris\n",
+        "   2. Retourner au menu principal\n",
+        "   Q. Quitter\n",
+        "##############################################",
+        "\n"
+    ]))
 
 
 def display_error_msg():
