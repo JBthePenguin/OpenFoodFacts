@@ -14,8 +14,12 @@ off_class/category.pyc
 
 off_class/product.pyc
 
+off_class/favorite.pyc
+
 off_function/__pycache__/
 
 off_function/__init__.pyc
 
-off_function/off_function.pyc
+off_function/display.pyc
+
+off_function/input_user.pyc

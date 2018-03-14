@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
-""" Modules with application's functions : display and input"""
+""" Modules with application's functions to displaying all differents msg"""
 
 
 # DISPLAY
@@ -43,9 +43,9 @@ def display_choice_b(category_name, with_down_categories, with_prods_id_no_cat):
     if with_down_categories is True:
         msg = "".join([msg, "   ", str(i), ". Choisir une sous-categorie\n"])
         i += 1
-    if with_prods_id_no_cat is True:
-        msg = "".join([msg, "   ", str(i), ". Choisir un produit sans sous-catégorie\n"])
-        i += 1
+        if with_prods_id_no_cat is True:
+            msg = "".join([msg, "   ", str(i), ". Choisir un produit sans sous-catégorie\n"])
+            i += 1
     msg = "".join([
         msg,
         "   ", str(i), ". Choisir dans tous les produits de la catégorie ", category_name, "\n"
@@ -186,30 +186,3 @@ def display_favorites_list(favorites):
             "###################################################################\n"
         ])
     print(fav_list)
-
-
-# INPUT
-def save_input_user(input_msg, nbre_choice, with_quit):
-    """ valid the input user before return it"""
-    valid_input = False
-    while valid_input is False:
-        choice = input(input_msg)
-        if choice == "":
-            continue
-        try:
-            choice = int(choice)
-        except ValueError:
-            try:
-                choice = choice.lower()
-            except ValueError:
-                display_error_msg()
-            else:
-                if (with_quit is True) and (choice == "q"):
-                    return choice
-                else:
-                    display_error_msg()
-        else:
-            for i in range(1, (nbre_choice + 1)):
-                if choice == i:
-                    return choice
-            display_error_msg()

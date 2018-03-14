@@ -26,26 +26,26 @@ QUERY_ALL_FAVORITE = ("SELECT product_id, substitute_id FROM Favorite ")
 
 
 class Favorite():
-	"""docstring for Favorite"""
-	def __init__(self, product_id=None, substitute_id=None):
-		"""init Favorite: association product_id subtitute_id """
-		self.product_id = product_id
-		self.substitute_id = substitute_id
+    """docstring for Favorite"""
+    def __init__(self, product_id=None, substitute_id=None):
+        """init Favorite: association product_id subtitute_id """
+        self.product_id = product_id
+        self.substitute_id = substitute_id
 
 
-	def save_in_db(self):
-		""" method to save favorite in DB """
-		try:
-			CURSOR.execute(ADD_FAVORITE, (self.product_id, self.substitute_id))
-		except mysql.connector.errors.IntegrityError:
-			# Favorite already saved
-			msg = "Ce Favori a déjà été enregistré"
-		except mysql.connector.errors.DatabaseError:
-			msg = "Problème !!! Favori non enregistré"
-		else:
-			CNX.commit()
-			msg = "Enregistrement du Favori effectué"
-		return msg
+    def save_in_db(self):
+        """ method to save favorite in DB """
+        try:
+            CURSOR.execute(ADD_FAVORITE, (self.product_id, self.substitute_id))
+        except mysql.connector.errors.IntegrityError:
+            # Favorite already saved
+            msg = "Ce Favori a déjà été enregistré"
+        except mysql.connector.errors.DatabaseError:
+            msg = "Problème !!! Favori non enregistré"
+        else:
+            CNX.commit()
+            msg = "Enregistrement du Favori effectué"
+        print(msg)
 
 
 def found_favorites():
