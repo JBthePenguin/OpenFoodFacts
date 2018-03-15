@@ -66,7 +66,7 @@ class Product():
 
     def found_substitutes(self):
         """ with product's categories {id:level} 
-        return a list of possible substitutes [product_id]"""
+        return a list of possible substitutes [product_id] with grade a"""
         # select categories and and make dict -> {cat_id:level}
         categories = {}
         categories_id = []

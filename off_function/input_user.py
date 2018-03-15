@@ -41,5 +41,5 @@ def found_input_msg_ch_b(with_new_down_cat, with_prods_id_no_cat):
             msg = "".join([msg, ", 2 ou 3 (puis entrée): "])
     else:
         nbre_choice = 2
-        msg = "".join([msg, "ou 2 (puis entrée): "])
+        msg = "".join([msg, " ou 2 (puis entrée): "])
     return msg, nbre_choice

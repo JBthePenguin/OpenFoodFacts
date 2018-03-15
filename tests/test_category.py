@@ -81,7 +81,6 @@ class TestCategory:
         down_categories, products_id_no_category = cat_in_db.found_down_categories()
         down_categories_id = []
         down_categories_name = []
-        CURSOR
         for down_category in down_categories:
             down_categories_id.append(down_category[0])
             down_categories_name.append(down_category[1])
