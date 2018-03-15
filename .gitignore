@@ -23,3 +23,5 @@ off_function/__init__.pyc
 off_function/display.pyc
 
 off_function/input_user.pyc
+
+/.pytest_cache/
