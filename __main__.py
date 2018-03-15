@@ -2,7 +2,6 @@
 # coding: utf-8
 
 """ imports all necessary modules and play application : main() """
-
 # import from local modules
 from off_class import category, product, favorite
 from off_function import display, input_user
@@ -11,9 +10,12 @@ from off_function import display, input_user
 def main():
     """ main function display:
     - welcome message
-    - choice A : select a product or a favorite
-    - choice B : select category
-    -  user select a product -> display description and found substitute"""
+    - choice A : found a subsitute or chek favorites
+    - found substitute
+        - choice B : select category
+        -  user select a product -> display description and found substitute
+    - chek favorites
+        - display favorites"""
     appli_on = True
     while appli_on is True:
         # Welcome message

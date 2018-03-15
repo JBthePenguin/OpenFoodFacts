@@ -65,7 +65,7 @@ class Category():
 
     def found_down_categories(self):
         """ Method to found down_categories in self
-        return a list of down_categories  : [(id, name, nbre_products]
+        return a list of down_categories (>500 products) : [(id, name, nbre_products)]
         and after 1st choice, and for all other down categories for after,
         return also a list of products id not inside a down category"""
         down_categories = []
@@ -83,7 +83,7 @@ class Category():
                             (down_cat_id_name[0], down_cat_id_name[1], nbre_products_id[0])
                         )
             return down_categories
-        # main category after 1st choice
+        # new main category after 1st choice
         # and for all other down categories for after
         down_categories_id = []
         for product_id in self.products_id:
