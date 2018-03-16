@@ -5,7 +5,7 @@ CREATE TABLE Category (
                 id INT AUTO_INCREMENT NOT NULL,
                 level INT NOT NULL,
                 name VARCHAR(100) NOT NULL,
-                url_link VARCHAR(100) NOT NULL,
+                url_link VARCHAR(100),
                 PRIMARY KEY (id)
 );
 -- index
