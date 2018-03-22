@@ -35,6 +35,8 @@ def main():
             # Build  the main category Category() : application
             main_category = category.Category("M", 0, "OpenFoodFactsApp")
             down_categories = main_category.found_down_categories()
+            up_categories = []
+            up_categories.append(main_category)
             return_main_menu = False
             while return_main_menu is False:
                 # Display  main category or new main and down categories
@@ -55,41 +57,65 @@ def main():
                     cat_selected[1],
                     main_category.products_id
                 )
+                # create list of up categories
+                up_categories.append(new_main_category)
                 # Display the selected category and down categories
-                new_down_categories, prods_id_no_cat = new_main_category.found_down_categories()
-                display.display_category(new_main_category, new_down_categories)
-                with_new_down_cat = False
-                if new_down_categories != []:
-                    with_new_down_cat = True
-                with_prods_id_no_cat = False
-                if prods_id_no_cat != []: # Display a list of products
-                    products_no_cat = []
-                    for prod_id_no_cat in prods_id_no_cat:
-                        product_no_cat = product.Product(prod_id_no_cat)
-                        products_no_cat.append(product_no_cat)
-                    title = ""
-                    if with_new_down_cat is True:
-                        title = "PRODUITS SANS SOUS-CATEGORIE"
-                    display.display_products_list(title, products_no_cat)
-                    with_prods_id_no_cat = True
-                # Choice B
-                msg, nbre_choice = input_user.found_input_msg_ch_b(
-                    with_new_down_cat, with_prods_id_no_cat
-                )
-                display.display_choice_b(
-                    new_main_category.name, with_new_down_cat, with_prods_id_no_cat
-                )
-                user_choice = False
-                while user_choice is False:
-                    user_choice = input_user.save_input_user(msg, nbre_choice, False)
-                    if user_choice is False:
-                        display.display_error_msg()
-                # found corresponding display with the user choice
+                i = len(up_categories) - 1
+                choose_return_up_cat = True
+                while choose_return_up_cat is True:
+                    # new while for new choice go to up category
+                    i -= 1
+                    new_down_categories, prods_id_no_cat = new_main_category.found_down_categories()
+                    display.display_category(new_main_category, new_down_categories)
+                    with_new_down_cat = False
+                    if new_down_categories != []:
+                        with_new_down_cat = True
+                    with_prods_id_no_cat = False
+                    if prods_id_no_cat != []: # Display a list of products
+                        products_no_cat = []
+                        for prod_id_no_cat in prods_id_no_cat:
+                            product_no_cat = product.Product(prod_id_no_cat)
+                            products_no_cat.append(product_no_cat)
+                        title = ""
+                        if with_new_down_cat is True:
+                            title = "PRODUITS SANS SOUS-CATEGORIE"
+                        display.display_products_list(title, products_no_cat)
+                        with_prods_id_no_cat = True
+                    # Choice B
+                    msg, nbre_choice = input_user.found_input_msg_ch_b(
+                        with_new_down_cat, with_prods_id_no_cat
+                    )
+                    display.display_choice_b(
+                        new_main_category.name, with_new_down_cat, with_prods_id_no_cat
+                    )
+                    user_choice = False
+                    while user_choice is False:
+                        user_choice = input_user.save_input_user(msg, nbre_choice, False)
+                        if user_choice is False:
+                            display.display_error_msg()
+                    if (
+                            ((user_choice == 4) and (nbre_choice == 5)) or
+                            ((user_choice == 3) and (nbre_choice != 5)) or
+                            ((user_choice == 2) and (nbre_choice == 3))
+                    ):
+                        new_main_category = up_categories[i]
+                        if new_main_category.cat_id == "M":
+                            choose_return_up_cat = False
+                    else:
+                        choose_return_up_cat = False
+                # new main cat is MAIN cat -> needed with new choice go to up category
+                if new_main_category.cat_id == "M":
+                    main_category = new_main_category
+                    down_categories = main_category.found_down_categories()
+                    up_categories = []
+                    up_categories.append(main_category)
+                    continue
+                # no up cat choosed
                 choose_product = False
                 if (
-                        (user_choice == 4) or
-                        ((user_choice == 3) and (nbre_choice != 4)) or
-                        ((user_choice == 2) and (nbre_choice == 2))
+                        (user_choice == 5) or
+                        ((user_choice == 4) and (nbre_choice != 5)) or
+                        ((user_choice == 3) and (nbre_choice == 3))
                 ): # user want return to main menu
                     return_main_menu = True
                 elif (

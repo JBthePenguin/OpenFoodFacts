@@ -34,12 +34,12 @@ def found_input_msg_ch_b(with_new_down_cat, with_prods_id_no_cat):
     msg = "Taper 1"
     if with_new_down_cat is True:
         if with_prods_id_no_cat is True:
+            nbre_choice = 5
+            msg = "".join([msg, ", 2, 3, 4 ou 5 (puis entrée): "])
+        else:
             nbre_choice = 4
             msg = "".join([msg, ", 2, 3 ou 4 (puis entrée): "])
-        else:
-            nbre_choice = 3
-            msg = "".join([msg, ", 2 ou 3 (puis entrée): "])
     else:
-        nbre_choice = 2
-        msg = "".join([msg, " ou 2 (puis entrée): "])
+        nbre_choice = 3
+        msg = "".join([msg, ", 2 ou 3 (puis entrée): "])
     return msg, nbre_choice

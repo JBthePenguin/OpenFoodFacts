@@ -49,7 +49,8 @@ def display_choice_b(category_name, with_down_categories, with_prods_id_no_cat):
     msg = "".join([
         msg,
         "   ", str(i), ". Choisir dans tous les produits de la catégorie ", category_name, "\n"
-        "   ", str(i + 1), ". Retourner au menu principal\n"
+        "   ", str(i + 1), ". Retourner à la catégorie supérieure\n"
+        "   ", str(i + 2), ". Retourner au menu principal\n"
         "##############################################",
         "\n"
     ])
