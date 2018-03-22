@@ -205,6 +205,40 @@ def main():
                     fav_sub = product.Product(favorite_id[1])
                     favorites.append((fav_prod, fav_sub))
                 display.display_favorites_list(favorites)
+                display.display_choice_favorite()
+                user_choice = False
+                while user_choice is False:
+                    user_choice = input_user.save_input_user(
+                        "Taper 1, 2 ou 3 puis entrée: ", 3, False
+                    )
+                    if user_choice is False:
+                        display.display_error_msg()
+                if user_choice == 3:
+                    # user want return to main menu
+                    pass
+                else:
+                    if user_choice == 2:
+                        print("\n !!! Attention Suppression demandée !!! ")
+                    favorite_choice = False
+                    while favorite_choice is False: # User select a categorie
+                        favorite_choice = input_user.save_input_user(
+                            "\nChoisir un favori en saisissant son numéro: ",
+                            len(favorites),
+                            False
+                        )
+                        if favorite_choice is False:
+                            display.display_error_msg()
+                    if user_choice == 2:
+                        # user want to delete a favorite
+                        favorite_id = favorites_id[favorite_choice - 1]
+                        fav_to_delete = favorite.Favorite(
+                            favorite_id[0], favorite_id[1]
+                        )
+                        fav_to_delete.delete_in_db()
+                    else:
+                        # user want to see a favorite
+                        selected_favorite = favorites[favorite_choice - 1]
+                        display.display_favorite(selected_favorite)
     display.display_end_msg()
 
 

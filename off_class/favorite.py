@@ -17,10 +17,12 @@ CNX = mysql.connector.connect(
 )
 CURSOR = CNX.cursor()
 ## Query Models
-# to INSERT datas INTO table CategoryProduct
+# to INSERT datas INTO table Favorite
 ADD_FAVORITE = ("INSERT INTO Favorite "
-                        "(product_id, substitute_id) "
-                        "VALUES (%s, %s)")
+                "(product_id, substitute_id) "
+                "VALUES (%s, %s)")
+DELETE_FAVORITE = ("DELETE FROM Favorite "
+                   "WHERE product_id = %s AND substitute_id = %s")
 # to SELECT * in Favorite ->
 QUERY_ALL_FAVORITE = ("SELECT product_id, substitute_id FROM Favorite ")
 
@@ -46,6 +48,19 @@ class Favorite():
             CNX.commit()
             msg = "Enregistrement du Favori effectué"
         print(msg)
+
+    
+    def delete_in_db(self):
+        """method to delete favorite in db"""
+        try:
+            CURSOR.execute(DELETE_FAVORITE, (self.product_id, self.substitute_id))
+        except mysql.connector.errors.DatabaseError:
+            msg = "Problème lors de l'effacement"
+        else:
+            CNX.commit()
+            msg = "Suppression du Favori effectué"
+        print(msg)
+
 
 
 def found_favorites():

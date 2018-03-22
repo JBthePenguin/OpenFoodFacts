@@ -154,36 +154,63 @@ def display_product(product):
     ]))
 
 def display_favorites_list(favorites):
-    """ with favorites : list of favorite -> (prod_id, sub_id) """
+    """ with favorites : list of favorite -> (prod, sub) """
     fav_list = "".join([
-        
+        "\n",
+        "###################################################################\n",
+        "                 FAVORITES\n", "#############################"
     ])
     i = 0
     for favorite in favorites:
         i += 1
         fav_list = "".join([
-            fav_list,
-            "\n",
-            "###################################################################\n",
-            "                     Favorite ", str(i), "\n",
-            "              ########################\n\n"
-            " Product : ", favorite[0].name, "   Marque: ", favorite[0].brands, "\n",
-            "##############\n",
-            "          Nutri-Score: ", favorite[0].nutrition_grade.capitalize(), "\n\n",
-            "  A -> Mmmm !!! :)      ...         E -> Brrr !!! :(", "\n",
-            "#########################\n",
-            "  lien OpenFoodFacts: ", favorite[0].url_link, "\n",
-            "#########################\n",
-            "  où m'acheter?: " + favorite[0].stores, "\n",
-            "############################################\n\n"
-            " Substitut : ", favorite[1].name, "   Marque: ", favorite[1].brands, "\n",
-            "##############\n",
-            "          Nutri-Score: ", favorite[1].nutrition_grade.capitalize(), "\n\n",
-            "  A -> Mmmm !!! :)      ...         E -> Brrr !!! :(", "\n",
-            "#########################\n",
-            "  lien OpenFoodFacts: ", favorite[1].url_link, "\n",
-            "#########################\n",
-            "  où m'acheter?: " + favorite[1].stores, "\n",
-            "###################################################################\n"
+            fav_list, "\n",
+            str(i), ". ", favorite[0].name, ", ",
+            favorite[0].brands, ", ", favorite[0].nutrition_grade.capitalize(),
+            "  -->  ", favorite[1].name, ", ",
+            favorite[1].brands, ", ", favorite[1].nutrition_grade.capitalize()
         ])
     print(fav_list)
+
+def display_choice_favorite():
+    """ display chooses if user select favorite """
+    print("".join([
+        "\n",
+        "##############################################\n",
+        "   1. Consulter un Favori\n",
+        "   2. Supprimer un Favori\n",
+        "   3. Retourner au menu principal\n",
+        "##############################################",
+        "\n"
+    ]))
+
+
+
+
+def display_favorite(favorite):
+    """ with a favorite -> (prod, sub) """
+    favorite_displaying = "".join([
+        "\n",
+        "###################################################################\n",
+        "                     Favorite \n",
+        "              ########################\n\n"
+        " Product : ", favorite[0].name, "   Marque: ", favorite[0].brands, "\n",
+        "##############\n",
+        "          Nutri-Score: ", favorite[0].nutrition_grade.capitalize(), "\n\n",
+        "  A -> Mmmm !!! :)      ...         E -> Brrr !!! :(", "\n",
+        "#########################\n",
+        "  lien OpenFoodFacts: ", favorite[0].url_link, "\n",
+        "#########################\n",
+        "  où m'acheter?: ", favorite[0].stores, "\n",
+        "############################################\n\n"
+        " Substitut : ", favorite[1].name, "   Marque: ", favorite[1].brands, "\n",
+        "##############\n",
+        "          Nutri-Score: ", favorite[1].nutrition_grade.capitalize(), "\n\n",
+        "  A -> Mmmm !!! :)      ...         E -> Brrr !!! :(", "\n",
+        "#########################\n",
+        "  lien OpenFoodFacts: ", favorite[1].url_link, "\n",
+        "#########################\n",
+        "  où m'acheter?: ", favorite[1].stores, "\n",
+        "###################################################################\n"
+    ])
+    print(favorite_displaying)
