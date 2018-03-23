@@ -5,10 +5,28 @@
 
 """ imports all necessary modules"""
 import sys
-sys.path.append('..')
-
+import mysql.connector
 # import local modules
 from off_class import product
+
+sys.path.append('..')
+
+###
+# DATABASE
+###
+## Connexion
+# to DataBase
+CNX = mysql.connector.connect(
+    user="OpenFoodFactsApp", password='BonAppetit', host="127.0.0.1", database="db_openfoodfacts"
+)
+CURSOR = CNX.cursor()
+## Query Models
+# to SELECT Product.* with id
+QUERY_PRODUCT = (
+    "SELECT id, name, brands, nutrition_grade, url_link, description, stores   FROM Product "
+    "WHERE id = %s"
+)
+
 
 
 class TestProduct:
@@ -17,19 +35,15 @@ class TestProduct:
     
     def test_product_init(self):
         """ Test if the int of class Product is ok"""
-        assert self.PRODUCT_TEST.id_prod == 29910
-        assert self.PRODUCT_TEST.name == "Chocolat Crémeux Amère - Chocolat Noir 55% Cacao"
-        assert self.PRODUCT_TEST.brands == "Primola"
-        assert self.PRODUCT_TEST.nutrition_grade == "e"
-        assert self.PRODUCT_TEST.url_link == "".join([
-            "https://fr.openfoodfacts.org/produit/5941047824431",
-            "/chocolat-cremeux-amere-chocolat-noir-55-cacao-pri"
-        ])
-        assert self.PRODUCT_TEST.description == "".join([
-            "Sucre, pâte de cacao, beurre de cacao, cacao maigre en poudre, ",
-            "graisse végétale (palme, karité), émulsifiants (lécithine de _soja_), arôme."
-        ])
-        assert self.PRODUCT_TEST.stores == "Noz"
+        CURSOR.execute(QUERY_PRODUCT, (29910,))
+        for (prod_id, name, brands, nutrition_grade, url_link, description, stores) in CURSOR:
+            assert self.PRODUCT_TEST.id_prod == prod_id
+            assert self.PRODUCT_TEST.name == name
+            assert self.PRODUCT_TEST.brands == brands
+            assert self.PRODUCT_TEST.nutrition_grade == nutrition_grade
+            assert self.PRODUCT_TEST.url_link == url_link
+            assert self.PRODUCT_TEST.description == description
+            assert self.PRODUCT_TEST.stores == stores
 
     def test_found_subsitutes(self):
         """ Test if product_id 149, 181, 185, 533 are in subtitutes_id list"""
@@ -38,3 +52,8 @@ class TestProduct:
         assert 181 in substitutes_id_test
         assert 185 in substitutes_id_test
         assert 533 in substitutes_id_test
+        assert 5616 not in substitutes_id_test
+        assert 75771 not in substitutes_id_test
+        assert 75793 not in substitutes_id_test
+        assert 58751 not in substitutes_id_test
+

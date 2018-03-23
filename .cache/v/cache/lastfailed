@@ -1,0 +1,5 @@
+{
+  "tests/test_category.py::TestCategory::()::test_found_down_categories": true, 
+  "tests/test_input_user.py::TestInputUser::()::test_found_input_msg_ch_b": true, 
+  "tests/test_product.py::TestProduct::()::test_product_init": true
+}
