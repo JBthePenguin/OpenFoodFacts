@@ -2,26 +2,30 @@
 # coding: utf-8
 
 """ Modules with application's functions to displaying all differents msg"""
+from colorama import init, Fore, Style
+
+init(autoreset=True)
 
 
-# DISPLAY
 def display_welcome_msg():
     """ display the welcome message"""
-    print("".join([
-        "\n",
-        "               ##############################################\n",
-        "               ## !!! OPENFOODFACTS Python application !!! ##\n",
-        "               ##    est là pour vous aider à trouver un   ##\n",
-        "               ## produit plus sain  à déguster à la place ##\n",
-        "               ##    de celui que vous voulez dévorer.     ##\n",
-        "               ##############################################",
+    msg = "".join([
+        "\n               ##############################################",
+        "\n               ## !!! ", (Fore.RED + Style.BRIGHT + "OPENFOODFACTS"),
+        (Fore.GREEN + Style.NORMAL + " "),
+        "Python application !!! ##",
+        "\n               ##    est là pour vous aider à trouver un   ##",
+        "\n               ## produit plus sain  à déguster à la place ##",
+        "\n               ##    de celui que vous voulez dévorer.     ##",
+        "\n               ##############################################",
         "\n"
-    ]))
+    ])
+    print(Fore.GREEN + msg)
 
 
 def display_choice_a():
     """ display the first choice -> A """
-    print("".join([
+    msg = "".join([
         "\n",
         "##############################################\n",
         "   1. Sélectionner un produit à substituer\n",
@@ -29,7 +33,8 @@ def display_choice_a():
         "   Q. Quitter\n",
         "##############################################",
         "\n"
-    ]))
+    ])
+    print(Fore.WHITE + msg)
 
 
 def display_choice_b(category_name, with_down_categories, with_prods_id_no_cat):
@@ -54,11 +59,12 @@ def display_choice_b(category_name, with_down_categories, with_prods_id_no_cat):
         "##############################################",
         "\n"
     ])
-    print(msg)
+    print(Fore.WHITE + msg)
+
 
 def display_choice_c():
     """ display the choice save or not in favorites -> C """
-    print("".join([
+    msg = "".join([
         "\n",
         "##############################################\n",
         "   1. Ajouter aux Favoris\n",
@@ -66,18 +72,19 @@ def display_choice_c():
         "   Q. Quitter\n",
         "##############################################",
         "\n"
-    ]))
+    ])
+    print(Fore.WHITE + msg)
 
 
 def display_error_msg():
     """ display the error message
     when the input user is wrong """
-    print("\n  !! mauvaise saisie !!\n")
+    print(Fore.RED + Style.BRIGHT + "\n  !! mauvaise saisie !!\n")
 
 
 def display_end_msg():
     """display msg when app is closed"""
-    print("\n  !!! A bientôt et BON APPETIT !!!\n")
+    print(Fore.CYAN + Style.BRIGHT + "\n  !!! A bientôt et BON APPETIT !!!\n")
 
 
 def display_category(category, down_categories):
@@ -88,21 +95,23 @@ def display_category(category, down_categories):
     - title -> name, link OFF and number of products for main category
     - a list of down categories with the number of products for each
     and the corresponding input number -> i"""
-    print("".join([
+    msg = "".join([
         "\n",
         "               ########################################\n",
         "                     ", category.name, "\n"
         "                     ", str(len(category.products_id)), " produits", "\n",
         "               ########################################",
         "\n"
-    ]))
+    ])
+    print(Fore.RED + Style.BRIGHT + msg)
     i = 1
     for down_category in down_categories:
-        print("".join([
+        msg = "".join([
             "\n",
             str(i), ". ", down_category[1], ": ",
             str(down_category[2]), " produits"
-        ]))
+        ])
+        print(Fore.GREEN + Style.NORMAL + msg)
         i += 1
 
 
@@ -111,18 +120,20 @@ def display_products_list(title, products):
     - products : list of products_brands
         display list of products with:
     - id for user input -> 1 2 3 ... - name - brand"""
-    print("".join([
+    msg = "".join([
         "\n",
         "##############################################\n",
         "".join(["  ", title, "\n"]),
         "##############################################",
         "\n"
-    ]))
+    ])
+    print(Fore.RED + Style.BRIGHT + msg)
     i = 1
     for product in products:
-        print("".join([
+        msg = "".join([
             str(i), ". ", product.name, "   Marque: ", product.brands
-        ]))
+        ])
+        print(Fore.GREEN + Style.NORMAL + msg)
         i += 1
 
 
@@ -136,45 +147,62 @@ def display_product(product):
     - store
     - url_link
     """
-    print("".join([
+    if product.nutrition_grade.capitalize() == "A":
+        font_color = Fore.GREEN
+    elif product.nutrition_grade.capitalize() == "B":
+        font_color = Fore.YELLOW
+    elif product.nutrition_grade.capitalize() == "C":
+        font_color = Fore.WHITE
+    elif product.nutrition_grade.capitalize() == "D":
+        font_color = Fore.BLUE
+    else:
+        font_color = Fore.RED
+    msg = "".join([
         "\n",
         "###################################################################\n",
-        "    ", product.name, "    Marque: ", product.brands, "\n",
+        "    ", (font_color + product.name), (Fore.CYAN + "    Marque: "),
+        (font_color + product.brands), (Fore.CYAN + "\n"),
         "###################################################################\n",
-        "              Nutri-Score: ", product.nutrition_grade.capitalize(), "\n\n",
-        "  A -> Mmmm !!! :)      ...         E -> Brrr !!! :(", "\n",
+        "              Nutri-Score: ",
+        (font_color + Style.BRIGHT + product.nutrition_grade.capitalize()),
+        (Fore.CYAN + Style.NORMAL + "\n\n"),
+        (Fore.GREEN + "  A -> Mmmm !!! :)"), (Fore.CYAN + " "), "     ...         ",
+        (Fore.RED + "E -> Brrr !!! :("), (Fore.CYAN + "\n"),
         "###################################################################\n",
-        " ", product.description, "\n\n",
+        " ", (font_color + product.description), (Fore.CYAN + "\n\n"),
         "###################################################################\n",
-        "  lien OpenFoodFacts: ", product.url_link, "\n",
+        "  lien OpenFoodFacts: ", (font_color + product.url_link), (Fore.CYAN + "\n"),
         "###################################################################\n",
-        "  où m'acheter?: " + product.stores, "\n",
+        "  où m'acheter?: " + (font_color + product.stores), (Fore.CYAN + "\n"),
         "###################################################################",
         "\n"
-    ]))
+    ])
+    print(Fore.CYAN + msg)
+
 
 def display_favorites_list(favorites):
     """ with favorites : list of favorite -> (prod, sub) """
-    fav_list = "".join([
+    msg = "".join([
         "\n",
         "###################################################################\n",
-        "                 FAVORITES\n", "#############################"
+        "                 FAVORIS\n", "#############################"
     ])
     i = 0
     for favorite in favorites:
         i += 1
-        fav_list = "".join([
-            fav_list, "\n",
+        msg = "".join([
+            (Fore.RED + Style.BRIGHT + msg), (Fore.GREEN + Style.NORMAL + "\n"),
             str(i), ". ", favorite[0].name, ", ",
             favorite[0].brands, ", ", favorite[0].nutrition_grade.capitalize(),
             "  -->  ", favorite[1].name, ", ",
             favorite[1].brands, ", ", favorite[1].nutrition_grade.capitalize()
         ])
-    print(fav_list)
+    print(Fore.GREEN + msg)
+
 
 def display_choice_favorite():
     """ display chooses if user select favorite """
-    print("".join([
+    msg = "".join([
         "\n",
         "##############################################\n",
         "   1. Consulter un Favori\n",
@@ -182,35 +210,50 @@ def display_choice_favorite():
         "   3. Retourner au menu principal\n",
         "##############################################",
         "\n"
-    ]))
-
-
+    ])
+    print(Fore.WHITE + msg)
 
 
 def display_favorite(favorite):
     """ with a favorite -> (prod, sub) """
-    favorite_displaying = "".join([
-        "\n",
+    if favorite[0].nutrition_grade.capitalize() == "A":
+        font_color = Fore.GREEN
+    elif favorite[0].nutrition_grade.capitalize() == "B":
+        font_color = Fore.YELLOW
+    elif favorite[0].nutrition_grade.capitalize() == "C":
+        font_color = Fore.WHITE
+    elif favorite[0].nutrition_grade.capitalize() == "D":
+        font_color = Fore.BLUE
+    else:
+        font_color = Fore.RED
+    msg = "".join([
+        (Fore.RED + Style.BRIGHT + "\n"),
         "###################################################################\n",
-        "                     Favorite \n",
-        "              ########################\n\n"
-        " Product : ", favorite[0].name, "   Marque: ", favorite[0].brands, "\n",
+        "                     Favori \n",
+        "              ########################\n\n",
+        (Fore.CYAN + Style.NORMAL + " Product : "),
+        (font_color + favorite[0].name), (Fore.CYAN + "   Marque: "),
+        (font_color + favorite[0].brands), (Fore.CYAN + "\n"),
         "##############\n",
-        "          Nutri-Score: ", favorite[0].nutrition_grade.capitalize(), "\n\n",
-        "  A -> Mmmm !!! :)      ...         E -> Brrr !!! :(", "\n",
+        "          Nutri-Score: ",
+        (font_color + Style.BRIGHT + favorite[0].nutrition_grade.capitalize()),
+        (Fore.CYAN + Style.NORMAL + "\n"),
         "#########################\n",
-        "  lien OpenFoodFacts: ", favorite[0].url_link, "\n",
+        "  lien OpenFoodFacts: ", (font_color + favorite[0].url_link), (Fore.CYAN + "\n"),
         "#########################\n",
-        "  où m'acheter?: ", favorite[0].stores, "\n",
+        "  où m'acheter?: ", (font_color + favorite[0].stores), (Fore.CYAN + "\n"),
         "############################################\n\n"
-        " Substitut : ", favorite[1].name, "   Marque: ", favorite[1].brands, "\n",
+        " Substitut : ", (Fore.GREEN + favorite[1].name), (Fore.CYAN + "   Marque: "),
+        (Fore.GREEN + favorite[1].brands), (Fore.CYAN + "\n"),
         "##############\n",
-        "          Nutri-Score: ", favorite[1].nutrition_grade.capitalize(), "\n\n",
-        "  A -> Mmmm !!! :)      ...         E -> Brrr !!! :(", "\n",
+        "          Nutri-Score: ",
+        (Fore.GREEN + Style.BRIGHT + favorite[1].nutrition_grade.capitalize()),
+        (Fore.CYAN + Style.NORMAL + "\n"),
         "#########################\n",
-        "  lien OpenFoodFacts: ", favorite[1].url_link, "\n",
+        "  lien OpenFoodFacts: ", (Fore.GREEN + favorite[1].url_link),
+        (Fore.CYAN + "\n"),
         "#########################\n",
-        "  où m'acheter?: ", favorite[1].stores, "\n",
+        "  où m'acheter?: ", (Fore.GREEN + favorite[1].stores), (Fore.CYAN + "\n"),
         "###################################################################\n"
     ])
-    print(favorite_displaying)
+    print(Fore.CYAN + msg)

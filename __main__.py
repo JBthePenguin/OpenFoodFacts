@@ -218,17 +218,21 @@ def main():
                     pass
                 else:
                     if user_choice == 2:
-                        print("\n !!! Attention Suppression demandée !!! ")
+                        print(
+                            "\n !!! Attention Suppression demandée !!! taper 'q' pour annuler"
+                        )
                     favorite_choice = False
                     while favorite_choice is False: # User select a categorie
                         favorite_choice = input_user.save_input_user(
                             "\nChoisir un favori en saisissant son numéro: ",
                             len(favorites),
-                            False
+                            True
                         )
                         if favorite_choice is False:
                             display.display_error_msg()
-                    if user_choice == 2:
+                    if favorite_choice == ("q" or "Q"):
+                        pass
+                    elif user_choice == 2:
                         # user want to delete a favorite
                         favorite_id = favorites_id[favorite_choice - 1]
                         fav_to_delete = favorite.Favorite(
