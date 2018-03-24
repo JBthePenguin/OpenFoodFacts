@@ -85,11 +85,10 @@ $ source env/bin/activate
 
 Select the category that you want to search with the number... 
 ![list down categoiries](/screenshots/down_cat_prod.png)
-
-... after you can choose to go in a down category, or come back to the main menu, OR ...
+### ....
 ![list product](/screenshots/product_1.png)
 
-Choice B: here you can choose to go in a down category, come back to the main menu, see all products without down categories or directly see all the products inside this category. I think it's better to go first in some down categories before selecting a product, but you can do what you want at this step !!!
+**Choice B**: here you can choose to go in a down or up category, come back to the main menu, see all products without down categories or directly see all the products inside this category. I think it's better to go first in some down categories before selecting a product, but you can do what you want at this step !!!
 ![list product](/screenshots/product_2.png)
 ##### 2.1.2 Choose a product
 ![choose product](/screenshots/choose_prod.png)
@@ -103,15 +102,15 @@ Select the product that you want to find a substitute. The application display a
 
 Go to buy it, for sure it's a good product for the healthy.
 ##### 2.1.3 Choice C: after eating, if you are not sick, you can save the association product/substitute in your Favorites.
-![favorite input msg](/screenshots/favorite.png)
-
 Select 1 to save the association product/substitut in your favorites.
+![favorite input msg](/screenshots/favorite.png)
 #### 2.2 Search in yours favorites. *tape 2* 
 ![list favorite](/screenshots/list_favorite.png)
-### ....
-![list favorite](/screenshots/list_favorite2.png)
-This is a list of yours favorites that you can check when, where you want.
+This is a list of yours favorites. You can choose to check one (when, where you want) or delete one.\
+Tape 1 and choose which one you want to see the description.
+![list favorite](/screenshots/favorite_info.png)
 
+### Bye !!!!!
 ![bye](/screenshots/bye.png)
 
 \* The default language setting is french, if you want to change with an [other available language](https://en.wiki.openfoodfacts.org/API#Languages), it's necessary, at step 4.2, modify in **insert_data.py** : 
